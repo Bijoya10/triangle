@@ -1,0 +1,30 @@
+const Engine=Matter.Engine;
+const World=Matter.World;
+const Bodies=Matter.Bodies;
+
+var engine,world,ground;
+
+function setup() {
+  createCanvas(800,400);
+  engine=Engine.create();
+  world= engine.world;
+
+  var option={
+    isStatic:true
+  }
+
+  ground= Bodies.polygon(400,100,3,50);
+  World.add(world,ground);
+
+  console.log(ground.vertices[0].x);
+  
+}
+
+function draw() {
+  background(0); 
+  var pos=ground.vertices; 
+  Engine.update(engine);
+ 
+  triangle(ground.vertices[0].x,ground.vertices[0].y,ground.vertices[1].x,ground.vertices[1].y,ground.vertices[2].x,ground.vertices[2].y);
+  drawSprites();
+}
